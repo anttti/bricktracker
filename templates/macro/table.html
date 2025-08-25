@@ -1,0 +1,57 @@
+{% macro header(image=true, color=false, parts=false, quantity=false, missing=true, missing_parts=false, damaged=true, damaged_parts=false, sets=false, minifigures=false) %}
+  <thead>
+    <tr>
+      {% if image %}
+        <th data-table-no-sort-and-search="true" class="no-sort" scope="col"><i class="ri-image-line fw-normal"></i> Image</th>
+      {% endif %}
+      <th scope="col"><i class="ri-pencil-line fw-normal"></i> Name</th>
+      {% if color %}
+        <th scope="col"><i class="ri-palette-line fw-normal"></i> Color</th>
+      {% endif %}
+      {% if parts %}
+        <th data-table-number="true" scope="col"><i class="ri-shapes-line fw-normal"></i> Parts</th>
+      {% endif %}
+      {% if quantity %}
+        <th data-table-number="true" scope="col"><i class="ri-functions fw-normal"></i> Quantity</th>
+      {% endif %}
+      {% if missing and not config['HIDE_TABLE_MISSING_PARTS'] %}
+        <th data-table-number="true" scope="col"><i class="ri-question-line fw-normal"></i> Missing{% if missing_parts %} parts{% endif %}</th>
+      {% endif %}
+      {% if damaged and not config['HIDE_TABLE_DAMAGED_PARTS'] %}
+      <th data-table-number="true" scope="col"><i class="ri-error-warning-line fw-normal"></i> Damaged{% if damaged_parts %} parts{% endif %}</th>
+      {% endif %}
+      {% if sets %}
+        <th data-table-number="true" scope="col"><i class="ri-hashtag fw-normal"></i> Sets</th>
+      {% endif %}
+      {% if minifigures %}
+        <th data-table-number="true" scope="col"><i class="ri-group-line fw-normal"></i> Minifigures</th>
+      {% endif %}
+    </tr>
+  </thead>
+{% endmacro %}
+
+{% macro bricklink(item) %}
+  {% set url=item.url_for_bricklink() %}
+  {% if url %}
+    <a data-search="exclude" href="{{ url }}" target="_blank" class="badge rounded-pill text-bg-light border fw-normal">
+      <i class="ri-external-link-line"></i> Bricklink
+    </a>
+  {% endif %}
+{% endmacro %}
+
+{% macro image(image, caption=none, alt=none, accordion=false) %}
+  <td class="py-0">
+    <a data-lightbox data-caption="{{ caption }}" href="{{ image }}" target="_blank">
+      <img class="{% if accordion %}accordion-img{% else %}table-img{% endif %}" src="{{ image }}" {% if alt %}alt="{{ alt }}"{% endif %} loading="lazy">
+    </a>
+  </td>
+{% endmacro %}
+
+{% macro rebrickable(item) %}
+  {% set url=item.url_for_rebrickable() %}
+  {% if url %}
+    <a data-search="exclude" href="{{ url }}" target="_blank" class="badge rounded-pill text-bg-light border fw-normal">
+      <i class="ri-external-link-line"></i> Rebrickable
+    </a>
+  {% endif %}
+{% endmacro %}

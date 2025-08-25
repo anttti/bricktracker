@@ -1,0 +1,63 @@
+{% import 'macro/accordion.html' as accordion %}
+
+{% extends 'base.html' %}
+
+{% block title %} - Administration{% endblock %}
+
+{% block main %}
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="col-12">
+        <div class="card mb-3">
+          <div class="card-header">
+            <h5 class="mb-0"><i class="ri-settings-4-line"></i> Administration</h5>
+          </div>
+          <div class="accordion accordion-flush" id="admin">
+            {% if delete_database %}
+            {% include 'admin/database/delete.html' %}
+            {% elif delete_owner %}
+            {% include 'admin/owner/delete.html' %}
+            {% elif delete_purchase_location %}
+            {% include 'admin/purchase_location/delete.html' %}
+            {% elif delete_status %}
+            {% include 'admin/status/delete.html' %}
+            {% elif delete_storage %}
+            {% include 'admin/storage/delete.html' %}
+            {% elif delete_tag %}
+            {% include 'admin/tag/delete.html' %}
+            {% elif drop_database %}
+            {% include 'admin/database/drop.html' %}
+            {% elif import_database %}
+            {% include 'admin/database/import.html' %}
+            {% elif upgrade_database %}
+            {% include 'admin/database/upgrade.html' %}
+            {% elif refresh_set %}
+            {% include 'admin/set/refresh.html' %}
+            {% else %}
+              {% include 'admin/logout.html' %}
+              {% include 'admin/instructions.html' %}
+              {% if not config['USE_REMOTE_IMAGES'] %}
+                {% include 'admin/image.html' %}
+              {% endif %}
+              {% include 'admin/theme.html' %}
+              {% include 'admin/retired.html' %}
+              {{ accordion.header('Set metadata', 'metadata', 'admin', expanded=open_metadata, icon='profile-line', class='p-0') }}
+                {% include 'admin/owner.html' %}
+                {% include 'admin/purchase_location.html' %}
+                {% include 'admin/status.html' %}
+                {% include 'admin/storage.html' %}
+                {% include 'admin/tag.html' %}
+              {{ accordion.footer() }}
+              {% include 'admin/refresh.html' %}
+              {% include 'admin/database.html' %}
+              {% include 'admin/configuration.html' %}
+            {% endif %}
+          </div>
+          <div class="card-footer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

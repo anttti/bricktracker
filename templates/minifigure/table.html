@@ -1,0 +1,25 @@
+{% import 'macro/table.html' as table %}
+
+<div class="table-responsive-sm">
+  <table data-table="{% if all %}true{% endif %}" class="table table-striped align-middle" id="minifigures">
+    {{ table.header(parts=true, quantity=true, missing_parts=true, damaged_parts=true, sets=true) }}
+    <tbody>
+      {% for item in table_collection %}
+      <tr>
+        {{ table.image(item.url_for_image(), caption=item.fields.name, alt=item.fields.figure) }}
+        <td >
+          <a class="text-reset" href="{{ item.url() }}" style="max-width:auto">{{ item.fields.name }}</a>
+          {% if all %}
+            {{ table.rebrickable(item) }}
+          {% endif %}
+        </td>
+        <td>{{ item.fields.number_of_parts }}</td>
+        <td>{{ item.fields.total_quantity }}</td>
+        <td>{{ item.fields.total_missing }}</td>
+        <td>{{ item.fields.total_damaged }}</td>
+        <td>{{ item.fields.total_sets }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

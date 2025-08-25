@@ -1,0 +1,27 @@
+services:
+  bricktracker:
+    container_name: BrickTracker
+    restart: unless-stopped
+    image: gitea.baerentsen.space/frederikbaerentsen/bricktracker:1.2.2
+    ports:
+      - "3333:3333"
+    volumes:
+      - data:/data/
+      - instructions:/app/static/instructions/
+      - minifigures:/app/static/minifigures/
+      - parts:/app/static/parts/
+      - sets:/app/static/sets/
+    # Or define those in your .env file
+    environment:
+      BK_DATABASE_PATH: /data/app.db
+      BK_MINIFIGURES_FOLDER: minifigures
+      BK_RETIRED_SETS_PATH: /data/retired_sets.csv
+      BK_THEMES_PATH: /data/themes.csv
+    env_file: ".env"
+
+volumes:
+  data:
+  instructions:
+  minifigures:
+  parts:
+  sets:

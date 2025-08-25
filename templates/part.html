@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %} - Part {{ item.fields.name }} ({{ item.fields.color_name }}){% endblock %}
+
+{% block main %}
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      {% with solo=true %}
+        {% include 'part/card.html' %}
+      {% endwith %}
+    </div>
+  </div>
+</div>
+{% endblock %}

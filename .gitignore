@@ -1,0 +1,26 @@
+# Application
+.env
+*.db
+*.db-shm
+*.db-wal
+
+# Python specifics
+__pycache__/
+*.pyc
+
+# Static folders
+static/instructions/
+static/minifigs/
+static/minifigures/
+static/parts/
+static/sets/
+
+# IDE
+.vscode/
+
+# Temporary
+*.csv
+/local/
+
+# Apple idiocy
+.DS_Store
