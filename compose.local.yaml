@@ -21,5 +21,5 @@ services:
       BK_RETIRED_SETS_PATH: /local/retired_sets.csv
       BK_SETS_FOLDER: sets
       BK_THEMES_PATH: /local/themes.csv
-      BK_REBRICKABLE_API_KEY: 120487876c20a260489d563216da5b1f
+      BK_REBRICKABLE_API_KEY: invalid
       BK_HIDE_TABLE_DAMAGED_PARTS: true
